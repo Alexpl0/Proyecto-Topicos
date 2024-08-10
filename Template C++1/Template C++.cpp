@@ -1,29 +1,46 @@
 #include <iostream>
 #include "MenuEstruct.h"
 #include "Lista.h"
+#include "Arreglo.h"
 using namespace std;
 
 
 int main()
 {
-    int numb= rand() % 1000; // Numero a Buscar
+    int numb = rand() % 1000; // Numero a Buscar
     MenuEstruct est; //Creamos estructura de Menu a mostrar
 
     est.Menu(); // Muestra Menu
     est.select(est.est1); // Eleccion 1 del menu
     est.select(est.est2); // Eleccion 2 del menu
+    Lista lista;
+    int prob = 2;
+    Arreglo arreglo;
 
     switch (est.est1) // crea la primera estructura elegida
     {
     case 1: //Caso Lista
-        Lista lista;
-        lista.i.asignum(lista.i.num);
-        lista.insertarLista(lista.listn, lista.i.num);
 
+        lista.i.asignum(lista.i.num); //Se asignan los numeros aleatorios creados por el numal
+        //----------------------------------------------------------------------
+        lista.i.valpunt(lista.i.num); // Funcion para convertir int* a int normal
+        for (int i = 0; i < lista.i.rep; i++) {
+           lista.i.valor[i] = *lista.i.val[i]; //#increible
+        }
+        //----------------------------------------------------------------------
+        for (int i = 0; i < lista.i.rep; i++) 
+        {
+            lista.insertarLista(lista.listn, lista.i.valor[i]);// Una vez creados los int se asignan a la lista
+        }
+
+        lista.mostrarlista(lista.listn); // Se muestra la lista creada.
+        cout << endl << endl;
+        //----------------------------------------------------------------------
         break;
 
     case 2: // Caso Arreglo
-        cout << "La estructura seleccionada fue: Arreglo" << endl;
+        arreglo.asigarr();
+        arreglo.mostrar(arreglo);
         break;
 
     case 3: //Caso Arbol
