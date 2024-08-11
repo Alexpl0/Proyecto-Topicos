@@ -6,6 +6,7 @@ class Pila
 {
 public:
 	int pilnum[x];
+	int busqres, busqres2, busqres3;
 	numal pil;
 	//void asignum(int* cool, int* num);
 	void asigpil();

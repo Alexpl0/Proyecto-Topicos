@@ -15,6 +15,7 @@ public:
     };
 
     Nodo* arbol = NULL;
+    int busqres, busqres2, busqres3;
 
     Nodo* crearNodo(int numero) {
 

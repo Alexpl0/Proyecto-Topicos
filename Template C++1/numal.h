@@ -1,7 +1,7 @@
 #pragma once
 using namespace std;
 #include <cstdlib>
-const int x = 20; // Cantidad de numeros a crear 
+const int x = 10; // Cantidad de numeros a crear 
 
 class numal
 {

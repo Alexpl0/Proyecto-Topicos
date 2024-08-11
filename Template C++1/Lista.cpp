@@ -49,10 +49,126 @@ void Lista::mostrarlista(Nodo* listn) // Muestra los valores de la lista
     }
 }
 
-void Lista::buscar(Nodo* lista, int n) // Busca los valores de la lista por fuerza bruta
-{
-    int ver = 0;
+void Lista::ordenburbuja(Nodo** listn){
 
+    int intercambiado;
+    Nodo* i, * j;
+    for (i = *listn; i != nullptr; i = i->siguiente) {
+        intercambiado = 0;
+        for (j = *listn; j->siguiente != nullptr; j = j->siguiente) {
+            if (j->Dato > j->siguiente->Dato) {
+                swap(j->Dato, j->siguiente->Dato);
+                intercambiado = 1;
+            }
+        }
+        if (intercambiado == 0)
+            break;
+    }
+}
+
+void Lista::ordeninsercion(Nodo*& listn) {
+    {
+        if (listn == nullptr || listn->siguiente == nullptr) {
+            return; // La lista está vacía o tiene solo un nodo
+        }
+
+        Nodo* ordenada = nullptr; // Nueva lista ordenada
+
+        Nodo* actual = listn;
+        while (actual != nullptr) {
+            Nodo* siguiente = actual->siguiente;
+
+            // Inserta el nodo en la lista ordenada
+            if (ordenada == nullptr || ordenada->Dato >= actual->Dato) {
+                actual->siguiente = ordenada;
+                ordenada = actual;
+            }
+            else {
+                Nodo* temp = ordenada;
+                while (temp->siguiente != nullptr && temp->siguiente->Dato < actual->Dato) {
+                    temp = temp->siguiente;
+                }
+                actual->siguiente = temp->siguiente;
+                temp->siguiente = actual;
+            }
+
+            actual = siguiente;
+        }
+
+
+        listn = ordenada;
+    }
+}
+Lista::Nodo* Lista::obtenerUltimoNodo(Nodo* listn)
+{
+    Nodo* temp = listn;
+    while (temp != nullptr && temp->siguiente != nullptr) {
+        temp = temp->siguiente;
+    }
+    return temp;
+}
+Lista::Nodo* Lista::particionar(Nodo* inicio, Nodo* fin, Nodo** nuevoInicio, Nodo** nuevoFin)
+{
+    if (inicio == nullptr || fin == nullptr) return nullptr;
+
+    Nodo* pivote = fin;
+    Nodo* anterior = nullptr;
+    Nodo* actual = inicio;
+    Nodo* cola = pivote;
+
+    while (actual != pivote) {
+        if (actual->Dato < pivote->Dato) {
+            if (*nuevoInicio == nullptr) *nuevoInicio = actual;
+            anterior = actual;
+            actual = actual->siguiente;
+        }
+        else {
+            if (anterior) anterior->siguiente = actual->siguiente;
+            Nodo* temp = actual->siguiente;
+            actual->siguiente = nullptr;
+            cola->siguiente = actual;
+            cola = actual;
+            actual = temp;
+        }
+    }
+
+    if (*nuevoInicio == nullptr) *nuevoInicio = pivote;
+    *nuevoFin = cola;
+
+    return pivote;
+
+}
+void Lista::quickSortRecursivo(Nodo*& inicio, Nodo* fin)
+{
+    if (inicio == nullptr || inicio == fin) return;
+
+    Nodo* nuevoInicio = nullptr;
+    Nodo* nuevoFin = nullptr;
+    Nodo* pivote = particionar(inicio, fin, &nuevoInicio, &nuevoFin);
+
+    if (nuevoInicio != pivote) {
+        Nodo* temp = nuevoInicio;
+        while (temp->siguiente != pivote) temp = temp->siguiente;
+        temp->siguiente = nullptr;
+
+        quickSortRecursivo(nuevoInicio, temp);
+
+        temp = obtenerUltimoNodo(nuevoInicio);
+        temp->siguiente = pivote;
+    }
+
+    quickSortRecursivo(pivote->siguiente, nuevoFin);
+
+}
+void Lista::quickSort(Nodo*& listn)
+{
+    Nodo* fin = obtenerUltimoNodo(listn);
+    quickSortRecursivo(listn, fin);
+}
+void Lista::busquedafb(Nodo * lista, int n) // Busca los valores de la lista por fuerza bruta
+{
+    bool ver = 0;
+    busqres = 0;
     Nodo* aux1 = lista;
 
     //Se recorre el auxiliar hasta encontrar el lugar donde la posicion sea correcta de ingresar el nuevo nodo
@@ -65,57 +181,13 @@ void Lista::buscar(Nodo* lista, int n) // Busca los valores de la lista por fuer
         }
 
         aux1 = aux1->siguiente; //recorre el auxiliar
+        busqres++;
     }
     if (ver == 0)
     {
         cout << "No se ha encontrado el valor:  " << n << " dentro de la lista :c" << endl;
     }
+    cout << "El numero de operaciones realizadas fue: " << busqres << endl;
 }
 
-void Lista::insertarLista2(Nodo2*& listn2, int* n)
-{
-
-    // Creando Nueva Estrucutura Nodo
-
-    Nodo2* nuevo_nodo = new Nodo2();
-    nuevo_nodo->Dato2 = n;
-    cout << n << endl;
-
-    Nodo2* aux1 = listn2;
-    Nodo2* aux2 = 0;
-
-    //Ordenamiento
-//Se recorre el auxiliar hasta encontrar el lugar donde la posicion sea correcta de ingresar el nuevo nodo
-    while ((aux1 != 0) and (aux1->Dato2 < n))
-    {
-        aux2 = aux1;
-        aux1 = aux1->siguiente2; //recorre el auxiliar
-    }
-
-    //Para el primer elemento de la lista
-    if (listn2 == aux1)
-    {
-        listn2 = nuevo_nodo;
-    }
-    else
-    {
-        //Para los demas elementos de la lista
-        aux2->siguiente2 = nuevo_nodo;
-    }
-
-    nuevo_nodo->siguiente2 = aux1;
-
-
-}
-
-void Lista::mostrarlista2(Nodo2* listn2,int* Dato2)
-{
-    Nodo2* move = new Nodo2();
-    move = listn2;
-    while (move != NULL)
-    {
-        cout << move->Dato2 << " -> ";
-        move = move->siguiente2;
-    }
-}
 
