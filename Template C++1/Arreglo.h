@@ -6,8 +6,8 @@ class Arreglo
 public:
 	int arrnum[x];
 	numal arr;
-	void asignum(int* arr, int* num);
-	void asigarr();
-	void mostrar(Arreglo arreglo);
+	void asignum(int* arr, int* num); // Intento fallido de igualar el arreglo a los numeros aleatorios
+	void asigarr(); // Intento exitoso de agregar los aleatorios al arreglo
+	void mostrar(Arreglo arreglo); // Muestra el arreglo final
 };
 

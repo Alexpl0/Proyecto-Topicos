@@ -114,7 +114,7 @@ void Lista::mostrarlista2(Nodo2* listn2,int* Dato2)
     move = listn2;
     while (move != NULL)
     {
-        cout << move->Dato2 << " - ";
+        cout << move->Dato2 << " -> ";
         move = move->siguiente2;
     }
 }

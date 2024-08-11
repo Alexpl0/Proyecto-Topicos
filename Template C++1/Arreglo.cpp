@@ -16,9 +16,9 @@ void Arreglo::asigarr()
 	arr.valpunt(arr.num);
 	arr.valreal(*arr.val);
 
-	for (int i = 0; i << 20; i++)
+	for (int i = 0; i << x; i++)
 	{
-		arrnum[i] = arr.valor[i];
+		arrnum[i] = arr.valor[i]; //Guarda los numeros alearorios en el arreglo
 	}
 }
 
