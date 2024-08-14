@@ -1,7 +1,6 @@
 #include "MenuEstruct.h"
-
-
 using namespace std;
+int numb = rand() % 10; // Numero a Buscar
 
 void MenuEstruct::Menu()
 {
@@ -77,13 +76,39 @@ void MenuEstruct::stich(int est1, int est2)
             lista3.insertarLista(lista3.listn, lista3.i.valor[i]);// Una vez creados los int se asignan a la lista
         }
 
+        //----------------------------------------------------------------------
+        cout << endl << "Lista No ordenada: ";
         lista.mostrarlista(lista.listn); // Se muestra la lista creada.
+        lista.ordenburbuja(&lista.listn);
+        cout << endl << "Lista Ordenada: ";
+        lista.mostrarlista(lista.listn);
         cout << endl << endl;
+
+        cout << endl << "Lista No ordenada: ";
+        lista2.mostrarlista(lista2.listn); // Se muestra la lista creada.
+        lista2.ordenburbuja(&lista2.listn);
+        cout << endl << "Lista Ordenada: ";
         lista2.mostrarlista(lista2.listn); // Se muestra la lista creada.
         cout << endl << endl;
+
+        cout << endl << "Lista No ordenada: ";
+        lista3.mostrarlista(lista3.listn); // Se muestra la lista creada.
+        lista3.ordenburbuja(&lista3.listn);
+        cout << endl << "Lista Ordenada: ";
         lista3.mostrarlista(lista3.listn); // Se muestra la lista creada.
         cout << endl << endl;
         //----------------------------------------------------------------------
+        //----------------------------------------------------------------------
+        //BUSQUEDAS
+        cout << endl << "Numero a Buscar: " << numb << endl;
+        cout << "Resultado para Lista 1: " << endl;
+        lista.busquedafb(lista.listn, numb);
+
+        cout << "Resultado para Lista 2: " << endl;
+        lista2.busquedafb(lista2.listn, numb);
+
+        cout << "Resultado para Lista 3: " << endl;
+        lista3.busquedafb(lista3.listn, numb);
         break;
 
     case 2: // Caso Arreglo
@@ -150,12 +175,24 @@ void MenuEstruct::stich(int est1, int est2)
 
     case 5: // Caso pila
         pila.asigpil();
+        cout << endl << "Lista No ordenada: ";
+        pila.mostrar(pila);
+        pila.burbuja(pila.pilnum, pila.pil.rep);
+        cout << endl << "Lista Ordenada: ";
         pila.mostrar(pila);
 
         pila2.asigpil();
+        cout << endl << "Lista No ordenada: ";
+        pila2.mostrar(pila2);
+        pila2.burbuja(pila2.pilnum, pila2.pil.rep);
+        cout << endl << "Lista Ordenada: ";
         pila2.mostrar(pila2);
 
         pila3.asigpil();
+        cout << endl << "Lista No ordenada: ";
+        pila3.mostrar(pila3);
+        pila3.burbuja(pila3.pilnum, pila3.pil.rep);
+        cout << endl << "Lista Ordenada: ";
         pila3.mostrar(pila3);
         break;
 

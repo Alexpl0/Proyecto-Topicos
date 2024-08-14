@@ -5,7 +5,7 @@ using namespace std;
 void numal::asignum(int* num) // Asigna numero aleatorio a arreglo de 20 numeros
 {
     for (int i = 0; i < x; i++) {
-        num[i] = rand() % 1000;
+        num[i] = rand() % 100;
     }
 }
 
@@ -16,14 +16,14 @@ void numal::mostrar(int* num) // Muestra los numeros asignados al arreglo
     }
 }
 
-void numal::valpunt(int* num)
+void numal::valpunt(int* num) // Pasa los numeros del arreglo creado a otro sistema de apuntadores
 {
     for (int i = 0; i < x; i++) {
         val[i] = &num[i];
     }
 }
 
-void numal::valreal(int* val)
+void numal::valreal(int* val) //copia los valores del sistema de apuntadores a un arreglo de enteros
 {
     for (int i = 0; i < rep; i++) {
         valor[i] = val[i]; //#increible

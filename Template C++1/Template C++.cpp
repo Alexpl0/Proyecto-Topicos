@@ -11,7 +11,7 @@ using namespace std;
 
 int main()
 {
-    int numb = rand() % 10; // Numero a Buscar
+    //int numb = rand() % 10; // Numero a Buscar
     MenuEstruct est; //Creamos estructura de Menu a mostrar
 
     est.Menu(); // Muestra Menu

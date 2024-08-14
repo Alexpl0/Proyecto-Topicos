@@ -9,10 +9,13 @@ public:
 		int Dato;
 		Nodo* siguiente;
 	}; // Crea la estructura de un nodo de lista
-	int busqres, busqres2, busqres3;
+	//int busqresfb, busqresfb2, busqresfb3;
+	int busqresbs;
 	numal i; // Llama a la clase para crear los 20 valores, asignarles valor, y quiza mostrarlos
 
 	Nodo* listn=NULL; // Crea el puntero para usarlo en las funciones
+	
+
 	void insertarLista(Nodo*& listn, int i); // Funcion para insertar los valores -> Se requiere crear los valores primero
 	void mostrarlista(Nodo* lista); // Muestra los valores en orden, en lista
 	void ordenburbuja(Nodo** listn);
@@ -34,5 +37,7 @@ public:
 	//--------------------------------
 	void busquedafb(Nodo* lista, int n); // Busca un valor por fuerza bruta
 
+	void burbuja(int arreglo[], int n); // El arreglo sera la estructura creada por Numal, Valor[]; y n sera el valor X de numal
+	bool binarySearch(int arr[], int left, int right,  int b); // right sera la variable x declarada en Numal y left sera 0
 };
 

@@ -165,29 +165,91 @@ void Lista::quickSort(Nodo*& listn)
     Nodo* fin = obtenerUltimoNodo(listn);
     quickSortRecursivo(listn, fin);
 }
+
 void Lista::busquedafb(Nodo * lista, int n) // Busca los valores de la lista por fuerza bruta
 {
     bool ver = 0;
-    busqres = 0;
+    int busqresfb = 1;
     Nodo* aux1 = lista;
 
     //Se recorre el auxiliar hasta encontrar el lugar donde la posicion sea correcta de ingresar el nuevo nodo
-    while ((aux1 != NULL))
-    {
+    while ((aux1 != NULL) and (ver==0))
+    {        
         if (aux1->Dato == n)
         {
             cout << "Se ha encontrado el valor:  " << n << endl;
             ver = 1;
+            cout << "El numero de operaciones realizadas  por Fuerza Bruta fue: " << busqresfb << endl << endl;
         }
 
         aux1 = aux1->siguiente; //recorre el auxiliar
-        busqres++;
+        busqresfb++;
     }
     if (ver == 0)
     {
         cout << "No se ha encontrado el valor:  " << n << " dentro de la lista :c" << endl;
+        cout << "El numero de operaciones realizadas  por Fuerza Bruta fue: " << x << endl << endl;
     }
-    cout << "El numero de operaciones realizadas fue: " << busqres << endl;
+    
 }
 
+//-------------------------------------------------------------------------------
+// PARA BUSQUEDA BINARIA
+// Usamos el arreglo "valor[x]" creado por "Numal" donde obteniamos el arreglo de numeros que ingresariamos a la lista. 
+// Ver: void numal::valpunt(int* num)
+Lista lista;
+
+void Lista::burbuja(int arreglo[], int x) { //arreglo[] sera valor[x], y x sera el tamano, o sea la variable X de numal
+    int i, j, temp;
+    bool huboIntercambio;
+
+    for (i = 0; i < x - 1; i++) {
+        huboIntercambio = false;
+        for (j = 0; j < x - i - 1; j++) {
+            if (arreglo[j] > arreglo[j + 1]) {
+                // Intercambiar elementos
+                temp = arreglo[j];
+                arreglo[j] = arreglo[j + 1];
+                arreglo[j + 1] = temp;
+                huboIntercambio = true;
+            }
+        }
+
+        // Si no hubo intercambios en una pasada, el arreglo ya está ordenado
+        if (!huboIntercambio) {
+            break;
+        }
+    }
+}
+
+bool Lista::binarySearch(int arr[], int left, int right, int b) // right sera la variable x declarada en Numal y left sera 0
+{
+    busqresbs = 0;
+    while (left <= right) {
+
+        busqresbs++;
+        int mid = left + (right - left) / 2;
+        cout << "Se ha encontrado el valor:  " << b << endl;
+        cout << "El numero de operaciones realizadas  por Fuerza Bruta fue: " << busqresbs << endl << endl;
+        // Si el elemento está en el medio, lo encontramos
+        if (arr[mid] == x)
+
+            return true;
+
+        // Si el elemento es menor que mid, buscamos en la mitad izquierda
+        if (arr[mid] < x)
+            left = mid + 1;
+
+        // Si el elemento es mayor que mid, buscamos en la mitad derecha
+        else
+            right = mid - 1;
+    }
+
+    // Si no lo encontramos, retornamos false
+    cout << "No se ha encontrado el valor:  " << b << " dentro de la lista :c" << endl;
+    cout << "El numero de operaciones realizadas  por Fuerza Bruta fue: " << busqresbs << endl << endl;
+    return false;
+}
+
+//-------------------------------------------------------------------------------
 

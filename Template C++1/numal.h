@@ -6,7 +6,7 @@ const int x = 10; // Cantidad de numeros a crear
 class numal
 {
 public:
-	int valor[x];
+	int valor[x]; // Arreglo final de enteros para copiar a las estructuras
 	int* val[x];
 	int rep = x;
 	int num[x]; // Arreglo de 20 numeros para cada estructura
